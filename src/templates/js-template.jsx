@@ -2,59 +2,55 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import PageTemplateDetails from '../components/PageTemplateDetails'
+import JsTemplateDetails from '../components/JsTemplateDetails'
 
-class PageTemplate extends React.Component {
+class JsTemplate extends React.Component {
   render() {
     const { title, subtitle } = this.props.data.site.siteMetadata
-    const page = this.props.data.markdownRemark
-    const { title: pageTitle, description: pageDescription } = page.frontmatter
-    const description = pageDescription !== null ? pageDescription : subtitle
+    const post = this.props.data.markdownRemark
+    const { title: postTitle, description: postDescription } = post.frontmatter
+    const description = postDescription !== null ? postDescription : subtitle
 
     return (
       <Layout>
         <div>
           <Helmet>
-            <title>{`${pageTitle} - ${title}`}</title>
+            <title>{`${postTitle} - ${title}`}</title>
             <meta name="description" content={description} />
           </Helmet>
-          <PageTemplateDetails {...this.props} />
+          <JsTemplateDetails {...this.props} />
         </div>
       </Layout>
     )
   }
 }
 
-export default PageTemplate
+export default JsTemplate
 
 export const pageQuery = graphql`
-  query PageBySlug($slug: String!) {
+  query JsBySlug($slug: String!) {
     site {
       siteMetadata {
         title
         subtitle
         copyright
-        menu {
-          label
-          path
-          subItem { 
-            label
-            path
-          }
-        }
         author {
           name
-          email
           facebook
-          github
         }
+        disqusShortname
+        url
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
+      fields {
+        tagSlugs
+      }
       frontmatter {
         title
+        tags
         date
         description
       }

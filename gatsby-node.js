@@ -10,15 +10,12 @@ exports.createPages = ({ graphql, actions }) => {
     const postTemplate = path.resolve('./src/templates/post-template.jsx')
     const pageTemplate = path.resolve('./src/templates/page-template.jsx')
     const tagTemplate = path.resolve('./src/templates/tag-template.jsx')
-    const categoryTemplate = path.resolve(
-      './src/templates/category-template.jsx'
-    )
-    const tilTemplate = path.resolve(
-      './src/templates/til-template.jsx'
-    )
-    const articleTemplate = path.resolve(
-      './src/templates/article-template.jsx'
-    )
+    const categoryTemplate = path.resolve('./src/templates/category-template.jsx')
+    const tilTemplate = path.resolve('./src/templates/til-template.jsx')
+    const articleTemplate = path.resolve('./src/templates/article-template.jsx')
+    const jsTemplate = path.resolve('./src/templates/js-template.jsx')
+    const esTemplate = path.resolve('./src/templates/es-template.jsx')
+    const linuxTemplate = path.resolve('./src/templates/linux-template.jsx')
 
     graphql(`
       {
@@ -161,7 +158,7 @@ exports.createPages = ({ graphql, actions }) => {
               context: { category },
             })
           })
-        }
+        } 
       })
 
       resolve()

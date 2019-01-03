@@ -10,16 +10,30 @@ module.exports = {
     disqusShortname: 'bkjang-github-io',
     menu: [
       {
-        label: 'Posts',
+        label: 'All Posts',
         path: '/',
-      },
-      {
-        label: 'TIL',
-        path: '/til/',
+        subItem : [
+          {
+            label: 'JavaScript',
+            path: '/javascript',
+          },
+          {
+            label: 'ES6',
+            path: '/es6',
+          },
+          {
+            label: 'Linux',
+            path: '/linux',
+          },
+        ]
       },
       {
         label: 'Articles',
         path: '/articles/',
+      },
+      {
+        label: 'TIL',
+        path: '/til/',
       },
       {
         label: 'About me',

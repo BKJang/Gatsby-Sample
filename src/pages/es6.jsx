@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Post from '../components/Post'
 import Sidebar from '../components/Sidebar'
 
-class ArticlesRoute extends React.Component {
+class EcmaRoute extends React.Component {
   render() {
     const items = []
     const { title, subtitle } = this.props.data.site.siteMetadata
@@ -31,10 +31,10 @@ class ArticlesRoute extends React.Component {
   }
 }
 
-export default ArticlesRoute
+export default EcmaRoute
 
 export const pageQuery = graphql`
-  query ArticleQuery {
+  query EcmaQuery {
     site {
       siteMetadata {
         title
@@ -58,7 +58,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       limit: 1000
-      filter: { frontmatter: { layout: { eq: "articles" } } },
+      filter: { frontmatter: { category: { eq: "ES6" } } },
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {
