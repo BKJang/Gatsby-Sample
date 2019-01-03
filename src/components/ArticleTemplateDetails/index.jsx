@@ -4,7 +4,7 @@ import moment from 'moment'
 import Disqus from '../Disqus/Disqus'
 import './style.scss'
 
-class PostTemplateDetails extends React.Component {
+class ArticleTemplateDetails extends React.Component {
   render() {
     const { subtitle, author } = this.props.data.site.siteMetadata
     const post = this.props.data.markdownRemark
@@ -12,8 +12,8 @@ class PostTemplateDetails extends React.Component {
 
     const homeBlock = (
       <div>
-        <Link className="post-single__home-button" to="/">
-          All Posts
+        <Link className="post-single__home-button" to="/articles">
+          All Articles
         </Link>
       </div>
     )
@@ -80,4 +80,4 @@ class PostTemplateDetails extends React.Component {
   }
 }
 
-export default PostTemplateDetails
+export default ArticleTemplateDetails

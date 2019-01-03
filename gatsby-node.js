@@ -13,6 +13,12 @@ exports.createPages = ({ graphql, actions }) => {
     const categoryTemplate = path.resolve(
       './src/templates/category-template.jsx'
     )
+    const tilTemplate = path.resolve(
+      './src/templates/til-template.jsx'
+    )
+    const articleTemplate = path.resolve(
+      './src/templates/article-template.jsx'
+    )
 
     graphql(`
       {
@@ -51,6 +57,78 @@ exports.createPages = ({ graphql, actions }) => {
           createPage({
             path: edge.node.fields.slug,
             component: slash(postTemplate),
+            context: { slug: edge.node.fields.slug },
+          })
+
+          let tags = []
+          if (_.get(edge, 'node.frontmatter.tags')) {
+            tags = tags.concat(edge.node.frontmatter.tags)
+          }
+
+          tags = _.uniq(tags)
+          _.each(tags, tag => {
+            const tagPath = `/tags/${_.kebabCase(tag)}/`
+            createPage({
+              path: tagPath,
+              component: tagTemplate,
+              context: { tag },
+            })
+          })
+
+          let categories = []
+          if (_.get(edge, 'node.frontmatter.category')) {
+            categories = categories.concat(edge.node.frontmatter.category)
+          }
+
+          categories = _.uniq(categories)
+          _.each(categories, category => {
+            const categoryPath = `/categories/${_.kebabCase(category)}/`
+            createPage({
+              path: categoryPath,
+              component: categoryTemplate,
+              context: { category },
+            })
+          })
+        } else if (_.get(edge, 'node.frontmatter.layout') === 'til') {
+          createPage({
+            path: edge.node.fields.slug,
+            component: slash(tilTemplate),
+            context: { slug: edge.node.fields.slug },
+          })
+
+          let tags = []
+          if (_.get(edge, 'node.frontmatter.tags')) {
+            tags = tags.concat(edge.node.frontmatter.tags)
+          }
+
+          tags = _.uniq(tags)
+          _.each(tags, tag => {
+            const tagPath = `/tags/${_.kebabCase(tag)}/`
+            createPage({
+              path: tagPath,
+              component: tagTemplate,
+              context: { tag },
+            })
+          })
+
+          let categories = []
+          if (_.get(edge, 'node.frontmatter.category')) {
+            categories = categories.concat(edge.node.frontmatter.category)
+          }
+
+          categories = _.uniq(categories)
+          _.each(categories, category => {
+            const categoryPath = `/categories/${_.kebabCase(category)}/`
+            createPage({
+              path: categoryPath,
+              component: categoryTemplate,
+              context: { category },
+            })
+          })
+        } else if (_.get(edge, 'node.frontmatter.layout') === 'articles') {
+          createPage({
+            path: edge.node.fields.slug,
+            component: slash(articleTemplate),
             context: { slug: edge.node.fields.slug },
           })
 

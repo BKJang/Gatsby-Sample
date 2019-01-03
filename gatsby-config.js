@@ -7,11 +7,19 @@ module.exports = {
     title: 'BKJang\'s Blog',
     subtitle: 'BKJang\'s Devlog',
     copyright: '© All rights reserved.',
-    disqusShortname: 'BKJang',
+    disqusShortname: 'bkjang-github-io',
     menu: [
       {
-        label: 'Articles',
+        label: 'Posts',
         path: '/',
+      },
+      {
+        label: 'TIL',
+        path: '/til/',
+      },
+      {
+        label: 'Articles',
+        path: '/articles/',
       },
       {
         label: 'About me',
@@ -23,7 +31,6 @@ module.exports = {
       email: 'jp302119@gmail.com',
       facebook: 'bongki.jang.9',
       github: 'BKJang',
-
     },
   },
   plugins: [
